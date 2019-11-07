@@ -1,6 +1,8 @@
 # dark-shell
 Some shells which are invisible to humans or programs.
 
+[中文文档](https://green-m.me/2019/11/06/encrypt-reverse-shell/)
+
 # Install
 
 Just download the dark_shell.rb, and install some dependency.
